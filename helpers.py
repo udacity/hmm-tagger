@@ -7,7 +7,7 @@ import random
 
 from io import BytesIO
 from itertools import chain
-from collections import namedtuple
+from collections import namedtuple, OrderedDict
 
 
 Sentence = namedtuple("Sentence", "words tags")
@@ -16,7 +16,8 @@ def read_data(filename):
     """Read tagged sentence data"""
     with open(filename, 'r') as f:
         sentence_lines = [l.split("\n") for l in f.read().split("\n\n")]
-    return {s[0]: Sentence(*zip(*[l.strip().split("\t") for l in s[1:]])) for s in sentence_lines if s[0]}
+    return OrderedDict(((s[0], Sentence(*zip(*[l.strip().split("\t")
+                        for l in s[1:]]))) for s in sentence_lines if s[0]))
 
 
 def read_tags(filename):
@@ -131,7 +132,7 @@ class Dataset(namedtuple("_Dataset", "sentences keys vocab X tagset Y training_s
         training_data = Subset(sentences, _keys[:split])
         testing_data = Subset(sentences, _keys[split:])
         stream = tuple(zip(chain(*word_sequences), chain(*tag_sequences)))
-        return super().__new__(cls, sentences, keys, wordset, word_sequences, tagset,
+        return super().__new__(cls, dict(sentences), keys, wordset, word_sequences, tagset,
                                tag_sequences, training_data, testing_data, N, stream.__iter__)
 
     def __len__(self):
