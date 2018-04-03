@@ -128,7 +128,7 @@ class Dataset(namedtuple("_Dataset", "sentences keys vocab X tagset Y training_s
         _keys = list(keys)
         if seed is not None: random.seed(seed)
         random.shuffle(_keys)
-        split = int(0.8 * len(_keys))
+        split = int(train_test_split * len(_keys))
         training_data = Subset(sentences, _keys[:split])
         testing_data = Subset(sentences, _keys[split:])
         stream = tuple(zip(chain(*word_sequences), chain(*tag_sequences)))
