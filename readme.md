@@ -12,20 +12,22 @@ You can choose one of two ways to complete the project. The first method is to u
 
 Alternatively, you can download a copy of the project from GitHub [here](https://github.com/udacity/hmm-tagger) and then run a Jupyter server locally with [Anaconda](https://www.anaconda.com/download/).
 
-**NOTE:** these steps are **not** required if you are using the project Workspace.
+**NOTES:** These steps are **not** required if you are using the project Workspace.
+
+0. (Optional) The provided code includes a function for drawing the network graph that depends on [GraphViz](http://www.graphviz.org/). You must manually install the GraphViz executable for your OS before the steps below or the drawing function will not work.
 
 1. Open a terminal and clone the project repository:
 ```
 $ git clone https://github.com/udacity/hmm-tagger
 ```
 
-2. Switch to the project folder and create a conda environment (note: you must already have Anaconda installed):
+3. Switch to the project folder and create a conda environment (note: you must already have Anaconda installed):
 ```
 $ cd hmm-tagger
 hmm-tagger/ $ conda env create -f hmm-tagger.yaml
 ```
 
-3. Activate the conda environment, then run the jupyter notebook server. (Note: windows users should run `activate hmm-tagger`)
+4. Activate the conda environment, then run the jupyter notebook server. (Note: windows users should run `activate hmm-tagger`)
 ```
 hmm-tagger/ $ source activate hmm-tagger
 (hmm-tagger) hmm-tagger/ $ jupyter notebook
